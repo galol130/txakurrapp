@@ -1,0 +1,56 @@
+<div class="text-center mt-5 signup">
+    <h1 class="">Sign up</h1>
+  
+    <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Email" required formControlName="email">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-hint>user@example.com</mat-hint>
+          <mat-error *ngIf="email.invalid">Wrong email format</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline" class="mb-4">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput placeholder="password" required formControlName="password" autocomplete="new-password">
+          <mat-icon matSuffix>password</mat-icon>
+          <mat-hint >Don't use your bank password, we didn't spent a lot on security for this app</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline" class="mb-4">
+          <mat-label>Repeat password</mat-label>
+          <input type="password" matInput placeholder="password" required formControlName="passwordRepeated" autocomplete="new-password">
+          <mat-icon matSuffix>password</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <!-- <mat-form-field appearance="outline">  [(ngModel)]="role"-->
+          <mat-radio-group aria-label="Select an option" formControlName="role" (change)="showRadio()">
+            <mat-radio-button [value]=1 class="mx-3" checked>Pet Owner</mat-radio-button>
+            <mat-radio-button [value]=2 class="mx-3">Business Owner</mat-radio-button>
+          </mat-radio-group>
+        <!-- </mat-form-field> -->
+      </p>
+      <div>
+        <button type="submit" class="btn btn-primary btn-lg mt-4" [disabled]="isSuccessful || signupForm.invalid">Register</button>
+      </div>
+      <div class="form-group">
+        <div class="alert alert-danger mt-3 text-center mx-5" width="20em" role="alert" *ngIf="isSubmitted && isSignUpFailed">
+            SignUp failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+    <div class="alert alert-success" *ngIf="isSuccessful">Registration was successful!</div>
+    <div class="text-center mt-3 mx-5 mb-5" *ngIf="isSuccessful">
+        <p class="text-center">Login to continue</p>
+        <button class="btn btn-outline-success mt-2 mb-3 px-2" id="login-btn" routerLink="/user/login">Let's Go!</button>
+    </div>
+
+    <!-- <div class="text-center mt-3 mx-5">
+        <p class="text-center">In order to finish your registration procees we need a </p>
+        <button class="btn btn-outline-success mt-3 px-2">Let's Go!</button>
+    </div> -->
+  </div>

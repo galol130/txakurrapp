@@ -1,0 +1,31 @@
+<mat-accordion class="" multi>
+  <mat-expansion-panel *ngIf="pet != undefined">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="align-content-center">
+        <img [src]="petPicture === undefined ? defaultPic : petPicture.name" width="25em" height="25em"
+          class="rounded-circle mr-3" alt="pet image">
+        {{pet.name}} <span class="text-muted px-4">({{ pet.type }})</span>
+      </mat-panel-title>
+      <mat-panel-description>
+        (Click to view details)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="row">
+      <div class="col col-2">
+        <img [src]="petPicture === undefined ? defaultPic : petPicture.name" width="100em" height="100em"
+          class="rounded-circle mr-3" alt="pet image">
+      </div>
+      <div class="col col-7 d-flex justify-content-start align-items-center flex-wrap">
+        <p><span class="text-muted pr-2">Breed: </span>{{ pet.breed }}</p>
+        <p><span class="text-muted pr-2 pl-3">Weight: </span> {{ pet.weight }} kg</p>
+        <p><span class="text-muted pr-2 pl-3">Date of Birth: </span> {{ pet.birthDate }} <span
+            class="text-muted pr-4">(Age {{ getAge() }})</span></p>
+        <p><span class="text-muted pr-2 pl-3">Important info: </span> {{ pet.otherInfo }}</p>
+      </div>
+      <div class="col col-2 d-flex justify-content-center align-items-center flex-wrap">
+        <button class="btn btn-sm btn-outline-warning px-4 mb-2" (click)="edit(pet.id)">Edit</button>
+        <button class="btn btn-sm btn-outline-danger px-3 mb-2" (click)="remove(pet.id)">Remove</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

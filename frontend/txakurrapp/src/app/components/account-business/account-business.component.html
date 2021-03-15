@@ -1,0 +1,109 @@
+<div *ngIf="hasFinished; else register">
+    <div class="d-flex justify-content-center mt-5">
+      <img [src]="profilePicture === undefined ? defaultPic : profilePicture.name" class="text-center rounded-circle profile-picture" alt="profile picture">
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+      <h2 class="col col-6 text-center">{{ owner === undefined ? 'Business Owner' : owner.firstName }}'s Dashboard</h2>
+    </div>
+    <div class="mx-5 mb-5">
+      <mat-tab-group mat-align-tabs="center">
+
+        <!--    MY PROFILE TAB START     -->
+        <mat-tab label="My Profile" *ngIf="owner != undefined">
+          <div class="mt-3 mx-5 profile-data">
+            <h2 class="text-info ml-2">Personal Info</h2>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">account_circle</mat-icon>
+              <p class="col text-start">{{ owner.firstName }} {{ owner.lastName }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">calendar_today</mat-icon>
+              <p class="col text-start"> {{ owner.birthDate }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">featured_play_list</mat-icon>
+              <p class="col text-start"> {{ owner.personalId }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">local_phone</mat-icon>
+              <p class="col text-start"> {{ owner.phoneNumber }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">card_membership</mat-icon>
+              <p class="col text-start">Member since: {{ owner.signUpDate }}</p>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-warning ml-5 px-4 mt-3">Edit</button>
+            </div>
+
+            <div class="ml-2 my-4">
+              <div class="row my-2 border-top">
+                <h2 class="col col-4 text-info">Withdrawal Account info</h2>
+                <mat-icon class="col col-1 mt-2 d-flex justify-content-start">receipt</mat-icon>
+              </div>
+              <p class="text-start"><i>No accounts info</i></p>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-warning ml-5 px-4 mb-3">Edit</button>
+            </div>
+
+            <div class="ml-2 my-3" *ngIf="address != undefined">
+              <div class="row my-2 border-top">
+                <h2 class="col col-3 text-info">Business Address</h2>
+                <mat-icon class="col col-1 mt-2 d-flex justify-content-start">business</mat-icon>
+              </div>
+              <p class="text-start my-2"><i>Street: </i> {{ address.streetName }}</p>
+              <p class="text-start my-2"><i>Numer: </i> {{ address.number }}</p>
+              <p class="text-start my-2"><i>Apt.: </i> {{ address.apt }}</p>
+              <p class="text-start my-2"><i>Other Info: </i> {{ address.otherInfo }}</p>
+              <p class="text-start my-2"><i>Postal Code: </i> {{ address.postalCode }}</p>
+              <p class="text-start my-2"><i>City: </i> {{ address.city }}</p>
+              <p class="text-start my-2"><i>Province / State: </i> {{ address.province }}</p>
+              <p class="text-start my-2"><i>Country: </i> {{ address.country }}</p>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-warning ml-5 px-4 mb-3">Edit</button>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!--   SERVICES TAB START   -->
+        <mat-tab label="My Services">
+          <div class="text-center mt-4">
+            <button mat-fab color="primary" (click)="openDialog()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="services.length < 1; then noServices else showServices"></div>
+          <ng-template #noServices>
+            <div class="text-center my-4">
+              <h2>No Services yet</h2>
+            </div>
+          </ng-template>
+          <ng-template #showServices>
+            <div class="text-center my-5 mx-3">
+              <app-service-item *ngFor="let service of services, let i=index" [service]="service" class=""></app-service-item>
+            </div>
+          </ng-template>
+
+        </mat-tab>
+
+
+        <!--   CUSTOMERS TAB START   -->
+        <mat-tab label="My Customers">
+          <div>
+            <p>No Customers yet!</p>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <!--    IF NO DATA, REGISTRATION FORM    -->
+  <ng-template #register>
+    <div class="text-center mt-4">
+      <h2 class="text-center">Please, first finish your registration.</h2>
+    </div>
+    <app-account-business-owner-register></app-account-business-owner-register>
+  </ng-template>

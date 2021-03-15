@@ -1,0 +1,18 @@
+
+.signup {}
+
+.signup h1{
+    
+}
+
+.signup mat-form-field{
+    width: 20em;
+}
+
+.signup button {
+    width: 12em;
+}
+
+#login-btn{
+    width: 12em;
+}

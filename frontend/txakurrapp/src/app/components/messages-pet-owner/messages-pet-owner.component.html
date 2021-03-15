@@ -1,0 +1,27 @@
+<div class="my-4 text-center" [@slideInDownOnEnter]>
+  <h1 class="">Messages</h1>
+</div>
+
+<div *ngFor="let conversation of conversations" class="container">
+  <mat-accordion class="" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="align-content-center">
+          <mat-icon class="mr-2">mail_outline</mat-icon>
+          Conversation with: <span class="text-muted px-4">{{conversation.recipient.firstName}} {{conversation.recipient.lastName}} </span>
+        </mat-panel-title>
+        <mat-panel-description>
+          (Click to view messages)
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let message of conversation.conversation" class="messageDiv" [@fadeInUpBigOnEnter]>
+        <div class="my-2">
+          <p>On: <span>{{ getDateFormatted(message.timeStamp) }}</span></p>
+          <p>Subject: <span>{{ message.messageSubject }}</span></p>
+          <p>Content: <span class="text-muted">{{ message.messageBody }}</span></p>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

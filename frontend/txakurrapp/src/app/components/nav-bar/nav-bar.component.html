@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+
+  <a class="navbar-brand" routerLink="/home" routerLinkActive="active">
+    <img src="../../../assets/images/paw_no_bg.png" width="60" height="60" alt="main_logo">
+  </a>
+
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="redirectIfNotLogged('/user/account')" routerLinkActive="active">My Account </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="redirectIfNotLogged('/user/messages')" routerLinkActive="active">Messages</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/services/browse" routerLinkActive="active">Browse Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/faqs" routerLinkActive="active">FAQ</a>
+    </li>
+
+  </ul>
+
+  <ul class="navbar-nav ml-auto mr-2" *ngIf="!isLoggedIn">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/user/login" routerLinkActive="active">Log In</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/user/signup" routerLinkActive="active">Sign up</a>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav ml-auto mr-2" *ngIf="isLoggedIn">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/user/account" >{{ username }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" role="button" routerLinkActive="active" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</nav>
+

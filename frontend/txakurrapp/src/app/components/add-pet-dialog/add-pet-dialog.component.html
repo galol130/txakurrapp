@@ -1,0 +1,61 @@
+<div>
+  <h1 mat-dialog-title class="text-center mt-3">Please, fill in the form</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="addPetForm" class="addPetForm">
+      <mat-form-field>
+        <mat-label>Pet Type (Dog | Cat | Pokemon)</mat-label>
+        <input type="text" matInput formControlName="type" required>
+        <mat-hint>Legal pets only!</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" required>
+        <mat-hint>Firulais</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Breed</mat-label>
+        <input type="text" matInput formControlName="breed">
+        <mat-hint>If applies</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Weight</mat-label>
+        <input type="number" matInput formControlName="weight">
+        <mat-hint>In kilograms</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Other Info</mat-label>
+        <input type="text" matInput formControlName="otherInfo">
+        <mat-hint>Illnesses, medication, whatever feels imporant</mat-hint>
+      </mat-form-field>
+
+      <div class="row d-flex">
+        <div class="col offset-1 col-6 align-self-center text-right">
+          <h3 class="text-center">Upload your pet's picture</h3>
+          <input type="file" (change)="readUrl($event)" name="petPicture" class="btn btn-sm btn-secondary">
+        </div>
+        <div class="col col-3 text-center my-3 align-self-center">
+          <img [src]="petPicture" class="inline-block rounded-circle" alt="" width="100" height="100">
+        </div>
+      </div>
+
+    </form>
+
+
+  </div>
+  <div mat-dialog-actions class="mt-4 mb-2 justify-content-center">
+    <button mat-button (click)="onNoClick()" class="mx-3">Cancel</button>
+    <button mat-button (click)="onSubmit()" cdkFocusInitial class="mx-3"
+      [disabled]="addPetForm.invalid || isSubmitted">Add Pet</button>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center mt-3">
+  <div class="col col-4" [@fadeInLeftBigOnEnter]>
+    <img class="col col-12" src="../../../assets/images/paw_no_bg.png" alt="main_logo">
+  </div>
+  <div class="col col-6" [@fadeInRightBigOnEnter]>
+    <div class="text-center mt-3">
+      <h1 class=" font-weight-bold text-success" style="font-size: 2rem;">Welcome to TxakurrApp</h1>
+      <div class="text-left ml-2 my-4">
+        <p>TxakurrApp is the platform for finding and sharing pet services. </p>
+        <p>Need a dog walker? Or a cat sitter?</p>
+        <p>Sign up to access these and other services!</p>
+        <p>Want to know more? Take a look to our <a routerLink="/faqs">FAQ.</a></p>
+      </div>
+    </div>
+    <div class="text-center mt-2">
+      <button class="btn btn-outline-primary bt-lg my-3 py-2 px-5" routerLink="/user/account" [@rubberBandOnEnter]>Take me in!</button>
+      <div class="mt-4">
+        <p class="text-muted">
+          You can <a routerLink="/services/browse">browse the services</a> without signing up!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

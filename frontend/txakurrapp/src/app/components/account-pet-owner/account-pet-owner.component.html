@@ -1,0 +1,123 @@
+  <div *ngIf="hasFinished; else register">
+    <div class="d-flex justify-content-center mt-5" [@rotateInOnEnter]>
+      <img [src]="profilePicture === undefined ? defaultPic : profilePicture.name" class="text-center rounded-circle profile-picture" alt="profile picture">
+    </div>
+    <div class="d-flex justify-content-center mt-2" [@fadeInOnEnter]>
+      <h2 class="col col-6 text-center">{{ owner === undefined ? 'Pet Owner' : owner.firstName }}'s Dashboard</h2>
+    </div>
+    <div class="mx-5 mb-5">
+      <mat-tab-group mat-align-tabs="center">
+
+        <!--    MY PROFILE TAB START     -->
+        <mat-tab label="My Profile">
+          <div class="mt-3 mx-5 profile-data">
+            <h2 class="text-info ml-2">Personal Info</h2>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">account_circle</mat-icon>
+              <p class="col text-start">{{owner === undefined ? 'First Name' : owner.firstName}} {{owner === undefined ? 'Last Name' : owner.lastName }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">calendar_today</mat-icon>
+              <p class="col text-start"> {{ owner === undefined ? 'Birth Date' : owner.birthDate }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">featured_play_list</mat-icon>
+              <p class="col text-start"> {{ owner === undefined ? 'Personal ID' :  owner.personalId }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">local_phone</mat-icon>
+              <p class="col text-start"> {{ owner === undefined ? 'Phone Number' : owner.phoneNumber }}</p>
+            </div>
+            <div class="row my-2">
+              <mat-icon class="col col-1 d-flex justify-content-end">card_membership</mat-icon>
+              <p class="col text-start">Member since: {{ owner === undefined ? 'Signup date' : owner.signUpDate }}</p>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-warning ml-5 px-4 mt-3">Edit</button>
+            </div>
+
+            <div class="ml-2 my-4">
+              <div class="row my-2 border-top">
+                <h2 class="col col-3 text-info">Payment info</h2>
+                <mat-icon class="col col-1 mt-2 d-flex justify-content-start">credit_card</mat-icon>
+              </div>
+              <p class="text-start"><i>No payment info</i></p>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-warning ml-5 px-4 mb-3">Edit</button>
+            </div>
+
+            <div class="ml-2 my-3" *ngIf="address != undefined">
+              <div class="row my-2 border-top">
+                <h2 class="col col-2 text-info">Billing info</h2>
+                <mat-icon class="col col-1 mt-2 d-flex justify-content-start">receipt</mat-icon>
+              </div>
+              <p class="text-start my-2"><strong>Street: </strong> {{ address.streetName }}</p>
+              <p class="text-start my-2"><strong>Number: </strong> {{ address.number }}</p>
+              <p class="text-start my-2"><strong>Apt.: </strong> {{ address.apt }}</p>
+              <p class="text-start my-2"><strong>Other Info: </strong> {{ address.otherInfo }}</p>
+              <p class="text-start my-2"><strong>Postal Code: </strong> {{ address.postalCode }}</p>
+              <p class="text-start my-2"><strong>City: </strong> {{ address.city }}</p>
+              <p class="text-start my-2"><strong>Province / State: </strong> {{ address.province }}</p>
+              <p class="text-start my-2"><strong>Country: </strong> {{ address.country }}</p>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-warning ml-5 px-4 mb-3">Edit</button>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!--   PETS TAB START   -->
+        <mat-tab label="My Pets">
+          <div class="text-center mt-4">
+            <button mat-fab color="primary" (click)="openDialog()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="pets.length < 1; then noPets else showPets"></div>
+          <ng-template #noPets>
+            <div class="text-center my-4">
+              <h2>No pets yet</h2>
+            </div>
+          </ng-template>
+          <ng-template #showPets>
+            <div class="text-center my-5 mx-3">
+              <app-pet-item *ngFor="let pet of pets, let i=index" [pet]="pet" class=""></app-pet-item>
+            </div>
+          </ng-template>
+
+        </mat-tab>
+
+
+        <!--   FAVORITES TAB START   -->
+        <mat-tab label="My Favs">
+          <div *ngIf="favs.length < 1; then noFavs else showFavs"></div>
+          <ng-template #noFavs>
+            <div class="text-center my-4">
+              <h2>No services added to favorites</h2>
+              <h3>Browse services too find what you are looking for!</h3>
+            </div>
+          </ng-template>
+          <div class="text-center mt-4">
+            <button mat-stroked-button color="warn" routerLink="/services/browse">Browse Services</button>
+          </div>
+          <ng-template #showFavs>
+            <div class="text-center my-5 mx-3">
+              <app-fav-item *ngFor="let fav of favs, let i=index" [fav]="fav" class=""></app-fav-item>
+            </div>
+          </ng-template>
+          
+        </mat-tab>
+        
+
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <!--    IF NO DATA, REGISTRATION FORM    -->
+  <ng-template #register>
+    <div class="text-center mt-4">
+      <h2 class="text-center">Please, first finish your registration.</h2>
+    </div>
+    <app-account-pet-owner-register></app-account-pet-owner-register>
+  </ng-template>

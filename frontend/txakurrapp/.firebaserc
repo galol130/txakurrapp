@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "txakurrapp": {
+      "hosting": {
+        "txakurrapp": [
+          "txakurrapp"
+        ]
+      }
+    }
+  }
+}

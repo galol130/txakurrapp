@@ -1,0 +1,45 @@
+<div>
+  <h1 mat-dialog-title class="text-center mt-3">Please, fill in the form</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="addServiceForm" class="addServiceForm">
+
+      <div class="row d-flex justify-content-around">
+        <mat-form-field class="col col-5">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput formControlName="name" required>
+          <mat-hint>Firulais</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="col col-2">
+          <mat-label>Currency</mat-label>
+          <mat-select formControlName="currency">
+            <mat-option value="EUR" selected>EUR</mat-option>
+            <mat-option value="USD" selected>USD</mat-option>
+            <mat-option value="GBP" selected>GBP</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col col-2">
+          <mat-label>Amount</mat-label>
+          <input type="number" matInput formControlName="amount">
+          <mat-hint>Decimal separator: '.'</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="row d-flex justify-content-around">
+        <mat-form-field class="col col-11">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+          <mat-hint>Detail the service</mat-hint>
+        </mat-form-field>
+      </div>
+
+    </form>
+
+  </div>
+  <div mat-dialog-actions class="mt-4 mb-2 justify-content-center">
+    <button mat-button (click)="onNoClick()" class="mx-3">Cancel</button>
+    <button mat-button (click)="onSubmit()" cdkFocusInitial class="mx-3"
+      [disabled]="addServiceForm.invalid || isSubmitted">Add Service</button>
+  </div>
+</div>

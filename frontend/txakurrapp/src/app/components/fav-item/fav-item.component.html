@@ -1,0 +1,36 @@
+<mat-accordion class="" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="align-content-center">
+        <mat-icon class="mr-2">flare</mat-icon>
+        {{fav.name}} <span class="text-muted px-4">({{ fav.available ? 'Available': 'Unavailable' }})</span>
+      </mat-panel-title>
+      <mat-panel-description>
+        (Click to view details)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="row">
+      <div class="col col-2">
+        <img [src]="getIcon()" width="100em" height="100em" class="rounded-circle mr-3" alt="service image">
+      </div>
+      <div class="col col-7 d-flex justify-content-around align-items-center flex-wrap">
+        <div class="col col-11 d-flex align-items-start flex-wrap">
+          <p><span class="text-muted pr-2">Name: </span>{{ fav.name }}</p>
+          <p><span class="text-muted pr-2 pl-3">Price: </span> {{ fav.price.amount }} ({{ fav.price.currency}})</p>
+        </div>
+        <div class="col col-11 d-flex align-items-start flex-wrap">
+          <p><span class="text-muted pr-2">Description: </span> {{ fav.description }}</p>
+        </div>
+      </div>
+      <div class="col col-2 d-flex justify-content-around align-items-center flex-wrap">
+        <button mat-stroked-button color="accent" (click)="sendMessage(fav.businessOwner)">
+          <mat-icon>chat_bubble</mat-icon> <span class="mb-2">Contact</span>
+        </button>
+        <button mat-stroked-button color="warn" (click)="remove(fav.id)">
+          <mat-icon>favorite</mat-icon> <span>Remove</span>
+        </button>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

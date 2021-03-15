@@ -1,0 +1,173 @@
+<!-- <div>
+
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Email and Password are required">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>User</ng-template>
+        <div class="text-center mt-3">
+          <h3>Login info</h3>
+          <p class="form-field-user">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="user@example.com" formControlName="email" required>
+            </mat-form-field>
+          </p>
+          <p class="form-field-user">
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input type="password" matInput placeholder="Password" formControlName="password" required>
+            </mat-form-field>
+          </p>
+          <div>
+            <button mat-button matStepperNex class="mt-5 mx-3" t>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Basic info is required">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Basic Info</ng-template>
+        <div class="text-center mt-3">
+          <h3>Personal Info</h3>
+          <p class="form-field-basic">
+            <mat-form-field>
+              <mat-label>First Name</mat-label>
+              <input type="text" matInput placeholder="John" formControlName="firstName" required>
+            </mat-form-field>
+          </p>
+          <p class="form-field-basic">
+            <mat-form-field>
+              <mat-label>Last Name</mat-label>
+              <input type="text" matInput placeholder="Davis" formControlName="lastName" required>
+            </mat-form-field>
+          </p>
+          <p class="form-field-basic">
+            <mat-form-field>
+              <mat-label>Personal ID</mat-label>
+              <input type="text" matInput placeholder="23455212Y" formControlName="personalId" required>
+            </mat-form-field>
+          </p>
+          <p class="form-field-basic">
+            <mat-form-field>
+              <mat-label>Date of Birth</mat-label>
+              <input type="date" matInput required>
+            </mat-form-field>
+          </p>
+          <div>
+            <button mat-button matStepperPrevious class="mt-5 mx-3">Back</button>
+            <button mat-button matStepperNext class="mt-5 mx-3">Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" errorMessage="Contact info is required">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Contact Info</ng-template>
+        <div class="text-center mt-3">
+          <h3>Contact Info</h3>
+          <p class="form-field-contact">
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input type="number" matInput formControlName="phone" required>
+              <mat-hint>only numbers</mat-hint>
+            </mat-form-field>
+          </p>
+          <h3 class="mt-4 mb-0 mx-3">Address</h3>
+          <div class="d-flex flex-row flex-wrap justify-content-around">
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>Street</mat-label>
+                <input type="text" matInput formControlName="street" required>
+                <mat-hint>Whatever Av.</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>Street Number</mat-label>
+                <input type="number" matInput formControlName="streetNumber" required>
+                <mat-hint>1234</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>Apt</mat-label>
+                <input type="text" matInput formControlName="apt">
+                <mat-hint>15 E</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>Extra info</mat-label>
+                <input type="text" matInput formControlName="otherInfo">
+                <mat-hint>Block C - Gate A</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>Postal Code</mat-label>
+                <input type="text" matInput formControlName="postalCode" required>
+                <mat-hint>90210</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>City</mat-label>
+                <input type="text" matInput formControlName="city">
+                <mat-hint>Beverly Hills</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>Province / State</mat-label>
+                <input type="text" matInput formControlName="province">
+                <mat-hint>Los Angeles</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="address-field">
+              <mat-form-field>
+                <mat-label>Country</mat-label>
+                <input type="text" matInput formControlName="country">
+                <mat-hint>USA</mat-hint>
+              </mat-form-field>
+            </p>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious class="mt-5 mx-3">Back</button>
+            <button mat-button matStepperNext class="mt-5 mx-3">Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup">
+      <form [formGroup]="fourthFormGroup">
+        <ng-template matStepLabel>Profile Picture</ng-template>
+        <div class="text-center mt-3 mb-5">
+          <h3>
+            <label>Upload your profile picture</label>
+          </h3>
+          <img [src]="profilePicture" class="inline-block rounded-circle" alt="" width="100" height="100">
+        </div>
+        <div class="text-center">
+          <div class="form-field-picture">
+            <p>
+              <input type="file" (change)="readUrl($event)" name="profilePicture" class="btn btn-secondary">
+            </p>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious class="mt-5 mx-3">Back</button>
+            <button mat-button matStepperNext class="mt-5 mx-3">Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+</div> -->

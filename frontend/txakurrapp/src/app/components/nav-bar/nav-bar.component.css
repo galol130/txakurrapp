@@ -1,0 +1,21 @@
+
+.logo{
+    margin: 6px 80px 6px 30px;
+    
+}
+
+.nav-link {
+    font-size: 1.2em;
+    margin: 0em 1em;
+}
+
+.nav-link.active {
+    color: rgb(255, 246, 116);
+    font-weight: 400;
+    border: none;
+    /* border-color: #dee2e6 #dee2e6 #fff; */
+}
+.undernav{
+    height:20px;
+    background-color: rgb(255, 246, 116);
+}

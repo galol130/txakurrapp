@@ -1,0 +1,36 @@
+<div>
+    <h1 mat-dialog-title class="text-center mt-3 mb-5">New Message</h1>
+    <div mat-dialog-content>
+      <form [formGroup]="messageForm" class="addServiceForm">
+        <div class="row d-flex justify-content-center">
+            <p class="col col-2 text-muted">To: </p>
+            <p class="col col-8">{{ serviceOwner.firstName }} {{ serviceOwner.lastName }}</p>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <p class="col col-2 text-muted">Subject:</p>
+          <mat-form-field class="col col-8">
+            <!-- <mat-label>Subject</mat-label> -->
+            <input type="text" matInput formControlName="messageSubject" required>
+            <!-- <mat-hint>More info</mat-hint> -->
+          </mat-form-field>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <p class="col col-2 text-muted pr-0">Content:</p>
+          <mat-form-field class="col col-8">
+            <!-- <mat-label>Content</mat-label> -->
+            <textarea matInput formControlName="messageBody" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="5" cdkAutosizeMaxRows="10"></textarea>
+            <mat-hint>(max 1000 characters)</mat-hint>
+          </mat-form-field>
+        </div>
+  
+      </form>
+  
+    </div>
+    <div mat-dialog-actions class="mt-4 mb-2 justify-content-center">
+      <button mat-button (click)="onNoClick()" class="mx-3">Cancel</button>
+      <button mat-button (click)="onSubmit()" cdkFocusInitial class="mx-3"
+        [disabled]="messageForm.invalid || isSubmitted">Send</button>
+    </div>
+  </div>
