@@ -1,4 +1,4 @@
-#TxakurrApp 🐾
+# TxakurrApp 🐾
 
 ### Ironhack bootcamp final project. 🖥️
 March 2021.
